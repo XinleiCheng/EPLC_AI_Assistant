@@ -7,7 +7,6 @@ from sentence_transformers import SentenceTransformer
 json_files = [
     "Training Plan.json",
     "Test Case.json",
-    "SLA_MOU.json",
     "Operation.json"
 ]
 
