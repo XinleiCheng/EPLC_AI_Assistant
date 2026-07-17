@@ -14,15 +14,16 @@ The prototype focuses on four phases:
 
 ## Current status
 
-This repository contains three parts that are not yet fully integrated:
+This repository contains an integrated Streamlit prototype plus the original
+command-line experiments:
 
-- A Streamlit user-interface prototype in `ibm.py`
+- A Streamlit interface backed by reusable services in `src/eplc_assistant`
 - Command-line RAG experiments for policy Q&A in `Coding/Q&A`
 - Command-line document-drafting experiments in `Coding/Generation`
 
-The Streamlit interface currently demonstrates the intended workflow but does
-not yet call the Q&A or document-generation modules. Refactoring and integration
-work is in progress.
+The Web interface supports grounded policy Q&A and section-by-section document
+drafting. The original command-line files remain as historical experiments and
+will be consolidated separately.
 
 ## Intended workflow
 
@@ -61,11 +62,9 @@ model; embedding vectors from different model families are not interchangeable.
 
 ## Repository guide
 
-- `Coding/`: Q&A and document-generation experiments
+- `Coding/`: original Q&A and document-generation experiments
 - `Data/`: source documents, processed JSON, embeddings, and Chroma artifacts
 - `src/eplc_assistant/`: reusable application, RAG, and service code
-- `frontend/`: duplicate of the current Streamlit prototype; scheduled for
-  consolidation
 - `Weekly Report/`: historical practicum presentation material
 
 ## Data sources
