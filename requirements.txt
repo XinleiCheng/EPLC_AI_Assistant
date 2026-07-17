@@ -1,0 +1,7 @@
+# Application
+streamlit>=1.39
+openai>=1.54
+chromadb>=0.5.20
+python-dotenv>=1.0
+sentence-transformers>=3.2
+

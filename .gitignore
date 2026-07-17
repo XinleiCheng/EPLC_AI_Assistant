@@ -1,0 +1,41 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build and package output
+build/
+dist/
+*.egg-info/
+
+# Local runtime output
+*.log
+result.csv
+
+# Generated vector-store files
+vector_db/
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*.swp
+

@@ -1,12 +1,74 @@
-# QMSS_IBM_Practicum_2025Fall
-This project was conducted as part of the QMSS Practicum Course at Columbia University, in partnership with IBM.
+# EPLC AI Assistant
 
-Within the Enterprise Performance Life Cycle (EPLC) framework, project managers are responsible for completing more than 50 mandatory templates that span multiple phases, each with dense policy language, overlapping requirements, and interdependent sections. In practice, this creates a labor‑intensive documentation burden in which users must repeatedly copy boilerplate language, reinterpret similar instructions across templates, and manually reconcile guidance scattered across EPLC policies and web resources. Because navigation is largely manual, PMs struggle to identify which templates are required for a given phase, which sections are actually in scope for their project, and how to adapt generic policy language to project‑specific contexts without risking non‑compliance. These structural challenges translate into concrete operational risks and inefficiencies. Manual, section‑by‑section drafting consumes substantial time that could otherwise be devoted to high‑value planning, and the absence of a guided workflow increases the likelihood of incomplete sections, inconsistent terminology, and misinterpretation of evolving EPLC rules. 
+EPLC AI Assistant is a prototype created for the Columbia University QMSS
+Practicum in partnership with IBM. It explores how retrieval-augmented
+generation (RAG) can help project managers navigate Enterprise Performance Life
+Cycle guidance and draft EPLC deliverables.
 
+The prototype focuses on four phases:
 
-From IBM stakeholders’ perspective, this gap represents a clear opportunity for a targeted GenAI solution: a system that can surface the right policy fragments at the right moment, generate grounded draft language, and make the overall documentation process more transparent and review‑friendly. By narrowing initial scope to the four highest‑pain phases—Requirements Analysis, Design, Development, and Implementation—the project team focused on the portion of the lifecycle where documentation complexity and navigation challenges are most acute, 100+ documents across 12 phases,  maximizing early impact while preserving a path to full‑phase coverage in future iterations.
-<img width="1512" height="854" alt="Homepage" src="https://github.com/user-attachments/assets/1957b9f3-a4f2-491d-a07b-14f4a531b05d" />
+- Requirements Analysis
+- Design
+- Development
+- Implementation
 
-We developed the EPLC Assistant, a Generative AI application utilizing a Retrieval-Augmented Generation (RAG) architecture grounded in proprietary EPLC policies and official "ground truth" data, powered by GPT-4o Mini. The system successfully implemented a reliable section-by-section guidance model that provides targeted content drafting, EPLC policy Q&A, and draft refinement capabilities via a custom web interface. Evaluation confirmed the system’s effectiveness by validating that utility is primarily governed by output quality, establishing that Clarity and Helpfulness are the critical metrics that reduce user review time and significantly improve overall compliance efficiency.
-​
+## Current status
 
+This repository contains three parts that are not yet fully integrated:
+
+- A Streamlit user-interface prototype in `ibm.py`
+- Command-line RAG experiments for policy Q&A in `Coding/Q&A`
+- Command-line document-drafting experiments in `Coding/Generation`
+
+The Streamlit interface currently demonstrates the intended workflow but does
+not yet call the Q&A or document-generation modules. Refactoring and integration
+work is in progress.
+
+## Intended workflow
+
+1. Parse and chunk official EPLC guidance and templates.
+2. Embed the chunks and store them in ChromaDB.
+3. Retrieve relevant chunks for a project manager's question or selected
+   document section.
+4. Ask an OpenAI model to answer or draft using the retrieved context.
+5. Show the supporting sources and flag information that still needs human
+   confirmation.
+
+AI-generated content is a drafting aid. It is not an official compliance
+determination and should be reviewed by the responsible project team.
+
+## Local setup
+
+Python 3.10 or newer is recommended.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+Add an OpenAI API key to `.env`, then start the current UI prototype:
+
+```bash
+streamlit run ibm.py
+```
+
+The existing RAG scripts also require local Chroma indexes. Their paths and
+embedding configuration are being consolidated as part of the current
+refactor.
+
+## Repository guide
+
+- `Coding/`: Q&A and document-generation experiments
+- `Data/`: source documents, processed JSON, embeddings, and Chroma artifacts
+- `frontend/`: duplicate of the current Streamlit prototype; scheduled for
+  consolidation
+- `Weekly Report/`: historical practicum presentation material
+
+## Data sources
+
+The data preparation notes and source links are documented in
+[`Data/README.md`](Data/README.md).
+
+<img width="1512" height="854" alt="EPLC Assistant prototype homepage" src="https://github.com/user-attachments/assets/1957b9f3-a4f2-491d-a07b-14f4a531b05d" />

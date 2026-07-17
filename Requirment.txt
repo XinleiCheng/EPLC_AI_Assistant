@@ -1,1 +1,0 @@
-# This document defines Python packages and versions for anyone who wants to reproduce the work
