@@ -44,7 +44,7 @@ Python 3.10 or newer is recommended.
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -e .
 cp .env.example .env
 ```
 
@@ -55,13 +55,15 @@ streamlit run ibm.py
 ```
 
 The existing RAG scripts also require local Chroma indexes. Their paths and
-embedding configuration are being consolidated as part of the current
-refactor.
+embedding configuration are centralized in `src/eplc_assistant/config.py`.
+Both index construction and retrieval must use the configured BGE embedding
+model; embedding vectors from different model families are not interchangeable.
 
 ## Repository guide
 
 - `Coding/`: Q&A and document-generation experiments
 - `Data/`: source documents, processed JSON, embeddings, and Chroma artifacts
+- `src/eplc_assistant/`: reusable application, RAG, and service code
 - `frontend/`: duplicate of the current Streamlit prototype; scheduled for
   consolidation
 - `Weekly Report/`: historical practicum presentation material
